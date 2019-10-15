@@ -3,12 +3,13 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import Vant from 'vant';
-import 'vant/lib/index.css';
+import 'assets/index.css';
 
 import { Toast } from 'vant';
 import { Area } from 'vant';
 import { Lazyload } from 'vant';
 import { Dialog } from 'vant';
+import '@/assets/index.css';
 
 // options 为可选参数，无则不传
 Vue.use(Lazyload);
