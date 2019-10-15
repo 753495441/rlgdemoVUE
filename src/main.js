@@ -3,7 +3,6 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import Vant from 'vant';
-import 'css/index.css';
 
 import { Toast } from 'vant';
 import { Area } from 'vant';
