@@ -9,6 +9,8 @@ export default new Vuex.Store({
     users:'',
     goods:'',
     goodId:'',
+    shippingId:0,
+    orderNos:'',
   },
   //改变状态方法
   mutations: {

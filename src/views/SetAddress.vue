@@ -1,64 +1,61 @@
 <template>
-    <div class="setaddress">
-      <van-nav-bar
-        title="收货地址管理"
-        left-text="返回"
-        left-arrow
-        @click-left="onClickLeft"
-      />
+  <div class="setaddress">
+    <top-back :content="title"></top-back>
 
-      <van-address-list
-        v-model="chosenAddressId"
-        :list="list"
-        :disabled-list="disabledList"
-        disabled-text="以下地址超出配送范围"
-        @add="onAdd"
-        @edit="onEdit"
-      />
-    </div>
+    <van-radio-group v-model="radio" v-for="(adds,index) in address" :key="index">
+      <van-cell-group>
+        <van-cell
+          :title="adds.receiverName+','+adds.receiverMobile"
+          :label="adds.receiverAddress"
+          @click="setAddress(adds.id)">
+          <van-radio slot="right-icon" :name="adds.id" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+
+  </div>
 </template>
 
 <script>
+  import TopBack from '@/components/TopBack.vue';
+  import axios from 'axios';
+  import store from '@/store';
+
   export default {
     name: 'SetAddress',
+    store,
+    components: {
+      TopBack
+    },
     data() {
       return {
-        chosenAddressId: '1',
-        list: [
-          {
-            id: '1',
-            name: '张三',
-            tel: '13000000000',
-            address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室'
-          },
-          {
-            id: '2',
-            name: '李四',
-            tel: '1310000000',
-            address: '浙江省杭州市拱墅区莫干山路 50 号'
-          }
-        ],
-        disabledList: [
-          {
-            id: '3',
-            name: '王五',
-            tel: '1320000000',
-            address: '浙江省杭州市滨江区江南大道 15 号'
-          }
-        ]
-      }
+        title: '收货地址管理',
+        radio:'',
+        address: [],
+      };
     },
     methods: {
-      onClickLeft() {
-        this.$router.push("/userset");
+      //设置默认用户收货地址
+      setAddress(shippingId){
+        var this_=this;
+        this_.radio=shippingId;
+        store.state.shippingId=shippingId;
+        this.$router.go(-1);
       },
-      onAdd() {
-        this.$router.push("/addaddress");
+      //获取登录用户收货地址
+      getAddress() {
+        //保存当前对象
+        var this_ = this;
+        //执行请求获取后端数据
+        //获取收货地址
+        axios.post('/portal/address/search.do')
+          .then(function (datas) {
+            this_.address = datas.data.data;
+          });
       },
-
-      onEdit(item, index) {
-        Toast('编辑地址:' + index);
-      }
+    },
+    activated: function () {
+      this.getAddress();
     }
   };
 </script>

@@ -70,29 +70,50 @@
       为你推荐
     </van-divider>
 
-    <van-grid :border="false" :column-num="2">
-      <van-grid-item>
-        <van-image :src="this.goods[0].mainImage" @click="ToGoods(0)" />
-      </van-grid-item>
-      <van-grid-item>
-        <van-image :src="this.goods[1].mainImage" @click="ToGoods(1)" />
-      </van-grid-item>
-    </van-grid>
-
-    <van-grid :border="false" :column-num="4">
-      <van-grid-item>
-        <van-image :src="this.goods[2].mainImage" @click="ToGoods(2)" />
-      </van-grid-item>
-      <van-grid-item>
-        <van-image :src="this.goods[3].mainImage" @click="ToGoods(3)" />
-      </van-grid-item>
-      <van-grid-item>
-        <van-image :src="this.goods[4].mainImage" @click="ToGoods(4)"/>
-      </van-grid-item>
-      <van-grid-item>
-        <van-image :src="this.goods[0].mainImage" @click="ToGoods(5)"/>
-      </van-grid-item>
-    </van-grid>
+    <van-row>
+      <van-col span="12" @click="ToGoods(0)">
+        <van-panel>
+          <van-image width="100%" height="150px" :src="this.goods[0].mainImage" />
+          <div>{{this.goods[0].subtitle}}</div>
+          <div>{{'$'+this.goods[0].price}}</div>
+        </van-panel>
+      </van-col>
+      <van-col span="12" @click="ToGoods(1)">
+        <van-panel>
+          <van-image width="100%" height="150px" :src="this.goods[1].mainImage" />
+          <div>{{this.goods[1].subtitle}}</div>
+          <div>{{'$'+this.goods[1].price}}</div>
+        </van-panel>
+      </van-col>
+      <van-col span="12" @click="ToGoods(2)">
+        <van-panel>
+          <van-image width="100%" height="150px" :src="this.goods[2].mainImage" />
+          <div>{{this.goods[2].subtitle}}</div>
+          <div>{{'$'+this.goods[2].price}}</div>
+        </van-panel>
+      </van-col>
+      <van-col span="12" @click="ToGoods(3)" >
+        <van-panel>
+          <van-image width="100%" height="150px" :src="this.goods[3].mainImage"/>
+        <div>{{this.goods[3].subtitle}}</div>
+          <div>{{'$'+this.goods[3].price}}</div>
+      </van-panel>
+      </van-col>
+      <van-col span="12" @click="ToGoods(4)">
+        <van-panel>
+          <van-image width="100%" height="150px" :src="this.goods[4].mainImage"/>
+          <div>{{this.goods[4].subtitle}}</div>
+          <div>{{'$'+this.goods[4].price}}</div>
+        </van-panel>
+      </van-col>
+      <van-col span="12" @click="ToGoods(5)">
+        <van-panel>
+          <van-image width="100%" height="150px" :src="this.goods[5].mainImage"/>
+          <div>{{this.goods[5].subtitle}}</div>
+          <div>{{'$'+this.goods[5].price}}</div>
+        </van-panel>
+      </van-col>
+    </van-row>
     <br>
     <br>
     <br>
